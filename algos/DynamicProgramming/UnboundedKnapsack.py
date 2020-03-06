@@ -1,49 +1,29 @@
-#the only difference b/w binary and unbound knapsack is that we can use any items any times to maximize profit
-#the only difference implementation going to make is to not increase index in situation item is picked as item cna be picked any number of times give capacity doesn't breach
-import math
-
 def unbounded_knapsack(profits, weights, capacity, index):
-    if capacity <= 0 or index >= len(profits):
+    if index >= len(profits) or capacity == 0:
         return 0
-
     profit1 = 0
     if weights[index] <= capacity:
-        profit1 = profits[index] + unbounded_knapsack(profits, weights, capacity - weights[index], index)
+        profit1 = profit1[index] + unbounded_knapsack(profits, weights, capacity-weights[index], index) #Notice we didn't increase the index instead
 
     profit2 = unbounded_knapsack(profits, weights, capacity, index+1)
 
     return max(profit1, profit2)
 
 
-def coin_change(denomination, total, index=0):
-    if index >= len(denomination) or len(denomination) == 0:
-        return 0
+def unbounded_knapsack(profits, weights, capacity, index):
+    n = len(profits)
+    dp = [[-1 for _ in range(capacity+1)] for _ in range(len(profits))]
 
-    if total == 0:
-        return 1
-
-    sum1 = 0
-    if denomination[index] <= total:
-        sum1 = coin_change(denomination, total - denomination[index], index)
-
-    sum2 = coin_change(denomination, total, index + 1)
-
-    return sum1 + sum2
+    for i in range(n):
+        dp[i][0] = 0
 
 
-def min_coin_change(denominations, total, index = 0):
-    if index >= len(denominations):
-        return math.inf
-    if total == 0:
-        return 0
+    for i in range(1, n):
+        for j in range(capacity+1):
+            profit1, profit2 = 0, 0
+            if weights[i] <= j:
+                profit1 = profits[i] + dp[i][j-weights[i]] #notice we are looking in same line as item can be repeated
+            profit2 = dp[i-1][j]
+            dp[i][j] = max(profit1, profit2)
 
-    count1 = math.inf
-    if denominations[index] <= total:
-        res = min_coin_change(denominations, total-denominations[index], index)
-        if res != math.inf:
-            count1 = res + 1
-
-    count2 = min_coin_change(denominations, total, index+1)
-    return min(count1, count2)
-
-
+        return dp[n-1][capacity]

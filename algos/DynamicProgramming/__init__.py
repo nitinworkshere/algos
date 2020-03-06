@@ -1,6 +1,6 @@
 from algos.DynamicProgramming.Fibbonaci import *
 from algos.DynamicProgramming.Knapsack import *
-from algos.DynamicProgramming.EqualSubset import *
+from algos.DynamicProgramming.SubsetSum import *
 from algos.DynamicProgramming.UnboundedKnapsack import *
 
 print(fibonacci(10))

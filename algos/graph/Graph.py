@@ -1,24 +1,49 @@
-from algos.graph.LinkedList import LinkedList
-
+from collections import defaultdict
 
 class Graph:
+    def __init__(self, V):
+        self.V = V
+        self.graph = defaultdict(list)
 
-    def __init__(self, vertices):
-        self.vertices = vertices
-        self.arr = []
+    def add_edge(self, src, dest):
+        self.graph[src].append(dest)
 
-        for i in range(vertices):
-            temp = LinkedList()
-            self.arr.append(temp)
+    def bfs(self, starting_vertex):
 
-    def add_edge(self, source, dest):
-        self.arr[source].insert_at_head(dest) #will keep on appending new edge dest on head of linked list
+        visited = [False for _ in range(len(self.graph))]
 
-    def print(self):
-        for vertex in range(self.vertices):
-            print("|", vertex, end=" | => ")
-            dest = self.arr[vertex].get_head()
-            while dest is not None:
-                print("[" , dest.val, end = " ] -> ")
-                dest = dest.next
-            print("None")
+        queue = []
+        queue.append(starting_vertex)
+
+        while queue:
+            v = queue.pop(0)
+            print(v, " ")
+            for curr_vertex in self.graph[v]:
+                if not visited[curr_vertex]:
+                    queue.append(curr_vertex)
+                    visited[curr_vertex] = True
+
+    def dfs(self, starting_vertex):
+        visited = [False for _ in range(len(self.graph))]
+        self.dfs_helper(starting_vertex, visited)
+
+    def dfs_helper(self, starting_vertex, visited):
+        visited[starting_vertex] = True
+        print(starting_vertex, "")
+        for curr_vertex in self.graph[starting_vertex]:
+            if not visited[curr_vertex]:
+                self.dfs_helper(curr_vertex, visited)
+
+
+
+g = Graph()
+g.add_edge(0, 1)
+g.add_edge(0, 2)
+g.add_edge(1, 2)
+g.add_edge(2, 0)
+g.add_edge(2, 3)
+g.add_edge(3, 3)
+g.bfs(2)
+print()
+g.dfs(2)
+
