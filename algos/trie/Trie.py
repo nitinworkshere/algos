@@ -1,39 +1,44 @@
-from algos.trie.TrieNode import TrieNode
+class Node:
+    def __init__(self, char=''):
+        self.char = char
+        self.children = [None]*26
+        self.isEndOfWord = False
+
+    def mark_end_of_word(self):
+        self.isEndOfWord = True
 
 
 class Trie:
     def __init__(self):
-        self.root = TrieNode() #blanknode
+        self.root = Node()
 
-    def get_index(self, t):
-        return ord(t)-ord('a')
+    def index_of_char(self, ch): #As we are starting with a
+        return ord(ch) - ord('a')
 
     def insert(self, key):
-        if key is None:
-            return
-        current_node = self.root
+        current = self.root
         for char in key:
-            index = self.get_index(char)
-            if current_node.children[index] is None:
-                current_node.children[index] = TrieNode(char)
-
-            current_node = current_node.children[index]
-        current_node.mark_end_of_word()
-
-    def delete(self, key):
-        pass # recursive approach
+            index = self.index_of_char(char)
+            if current.children[index] is None:
+                current.children[index] = Node(char)
+                current = current.children[index]
+        current.mark_end_of_word()
 
     def search(self, key, prefix=True):
-        if key is None or self.root is None:
-            return False
-        current_node = self.root
+        current = self.root
         for char in key:
-            index = self.get_index(char)
-            if current_node.children[index] is None:
+            index = self.index_of_char(char)
+            if not current.children[index]:
                 return False
-            current_node = current_node.children[index]
-        if not current_node.is_end_word and prefix is False:
+            current = current.children[index]
+
+        if not current.isEndOfWord and not prefix:
             return False
         return True
+
+
+dictionary = Trie()
+dictionary.insert('hello')
+print(dictionary.search('he', False))
 
 
