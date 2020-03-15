@@ -12,3 +12,12 @@ def find_MPP_cuts_recursive(st, startIndex, endIndex):
                 minimumCuts, 1 + find_MPP_cuts_recursive(st, i + 1, endIndex))
 
     return minimumCuts
+
+
+def is_palindrome(st, x, y):
+  while (x < y):
+    if st[x] != st[y]:
+      return False
+    x += 1
+    y -= 1
+  return True

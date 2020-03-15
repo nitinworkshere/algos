@@ -16,7 +16,7 @@ def print_vertical_tree(root, root_distances={}, distances={}):
     root_distances[root] = 0
     distances[0] = [root.val]
 
-    while len(queue)>0:
+    while len(queue) > 0:
         current = queue.pop(0)
 
         if current.left:

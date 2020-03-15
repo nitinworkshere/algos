@@ -1,3 +1,4 @@
+#complexity 3^n
 def count_ways(n):
     if n == 0:
         return 1
@@ -10,7 +11,7 @@ def count_ways(n):
 
     return take1Step + take2Step + take3Step
 
-
+#O(n)
 def count_ways_bottom_up(n):
     dp = [0 for _ in range(n+1)]
 
