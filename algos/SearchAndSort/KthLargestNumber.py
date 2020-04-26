@@ -1,6 +1,6 @@
 from heapq import *
 
-
+#complexity O(n + kLogn)
 class KthLargestNumberInStream:
     minHeap = []
 

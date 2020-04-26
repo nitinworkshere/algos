@@ -1,10 +1,8 @@
-    def find_target_subsets(num, s):
+def find_target_subsets(num, s):
     totalSum = sum(num)
-
     # if 's + totalSum' is odd, we can't find a subset with sum equal to '(s + totalSum) / 2'
     if totalSum < s or (s + totalSum) % 2 == 1:
         return 0
-
     return count_subsets(num, int((s + totalSum) / 2))
 
 

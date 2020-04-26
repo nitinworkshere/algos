@@ -1,19 +1,34 @@
-def non_repeat_substring(str):
-    window_start = 0
-    max_length = 0
-    char_index_map = {}
+# Python3 program to find length
+# of longest subsegment of all 1's
+# by changing at most k 0's
 
-    # try to extend the range [windowStart, windowEnd]
-    for window_end in range(len(str)):
-        right_char = str[window_end]
-        # if the map already contains the 'right_char', shrink the window from the beginning so that
-        # we have only one occurrence of 'right_char'
-        if right_char in char_index_map:
-            # this is tricky; in the current window, we will not have any 'right_char' after its previous index
-            # and if 'window_start' is already ahead of the last index of 'right_char', we'll keep 'window_start'
-            window_start = max(window_start, char_index_map[right_char] + 1)
-        # insert the 'right_char' into the map
-        char_index_map[right_char] = window_end
-        # remember the maximum length so far
-        max_length = max(max_length, window_end - window_start + 1)
-    return max_length
+def longestSubSeg(a, n, k):
+    cnt0 = 0
+    l = 0
+    max_len = 0;
+
+    # i decides current ending point
+    for i in range(0, n):
+        if a[i] == 0:
+            cnt0 += 1
+
+        # If there are more 0's move
+        # left point for current
+        # ending point.
+        while (cnt0 > k):
+            if a[l] == 0:
+                cnt0 -= 1
+            l += 1
+
+        max_len = max(max_len, i - l + 1);
+
+    return max_len
+
+
+# Driver code
+a = [1, 0, 0, 1, 0, 1, 0, 1]
+k = 2
+n = len(a)
+print(longestSubSeg(a, n, k))
+
+# This code is contributed by Smitha Dinesh Semwal

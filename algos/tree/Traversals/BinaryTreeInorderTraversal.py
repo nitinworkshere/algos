@@ -13,6 +13,9 @@ def binary_tree_inorder_traversal(root, lst=[]):
 
 
 
+
+
+
 root = Node(1)
 root.right = Node(2)
 root.right.left = Node(3)

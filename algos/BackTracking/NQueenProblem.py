@@ -1,4 +1,4 @@
-#Factorial complexity and space O(n*n)
+#Factorial complexity   O(n*n!) and space O(n*n)
 
 def place_n_queen(board, col=0): #we will go column wise all column done should mean we have reached the final
     board = [[0 for _ in range(len(board))] for _ in range(len(board[0]))]

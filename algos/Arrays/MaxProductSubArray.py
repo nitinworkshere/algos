@@ -51,7 +51,7 @@ def maxsubarrayproduct(arr):
             temp = max_ending_here
             max_ending_here = max(min_ending_here * arr[i], 1)
             min_ending_here = temp * arr[i]
-        if (max_so_far < max_ending_here):
+        if max_so_far < max_ending_here:
             max_so_far = max_ending_here
 
     if flag == 0 and max_so_far == 1:

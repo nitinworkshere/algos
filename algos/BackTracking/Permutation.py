@@ -3,6 +3,7 @@
 # 1. String
 # 2. Starting index of the string
 # 3. Ending index of the string.
+#complexity  O(n*n!)
 def permute(a, l, r):
     if l == r:
         print(''.join(a))

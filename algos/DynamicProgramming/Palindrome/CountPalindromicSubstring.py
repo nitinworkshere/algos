@@ -1,3 +1,4 @@
+#complexity O(n*n)
 def count_PS(st):
     n = len(st)
     # dp[i][j] will be 'true' if the string from index 'i' to index 'j' is a palindrome

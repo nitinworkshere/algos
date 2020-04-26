@@ -16,7 +16,7 @@ def search_quadruplets(arr, target):
 def search_pairs(arr, target_sum, first, second, quadruplets):
     left = second + 1
     right = len(arr) - 1
-    while (left < right):
+    while left < right:
         sum = arr[first] + arr[second] + arr[left] + arr[right]
         if sum == target_sum:  # found the quadruplet
             quadruplets.append(

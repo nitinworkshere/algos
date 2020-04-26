@@ -12,8 +12,7 @@ class Graph:
 
         visited = [False for _ in range(len(self.graph))]
 
-        queue = []
-        queue.append(starting_vertex)
+        queue = [starting_vertex]
 
         while queue:
             v = queue.pop(0)

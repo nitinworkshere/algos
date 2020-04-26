@@ -5,7 +5,7 @@ class Interval:
         self.end = end
 
 def merge_interval(intervals):
-    intervals.sort(key = lambda x: x.start)
+    intervals.sort(key=lambda x: x.start)
 
     merged = []
     start = intervals[0].start
@@ -22,4 +22,12 @@ def merge_interval(intervals):
     merged.append(Interval(start, end))
 
     return merged
+
+intervals = [[1,4], [2,5], [7,9]]
+converted_intervals = []
+for interval in intervals:
+    converted_intervals.append(Interval(interval[0], interval[1]))
+
+
+
 

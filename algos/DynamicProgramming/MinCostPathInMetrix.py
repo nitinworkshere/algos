@@ -1,6 +1,7 @@
+import math
 def minCost(cost, m, n):
     if (n < 0 or m < 0):
-        return sys.maxsize
+        return math.inf
     elif (m == 0 and n == 0):
         return cost[m][n]
     else:

@@ -31,12 +31,12 @@ def max_buy_sell_multiple(prices):
 # schedule for maximum profit
 def stockBuySell(price, n):
     # Prices must be given for at least two days
-    if (n == 1):
+    if n == 1:
         return
 
     # Traverse through given price array
     i = 0
-    while (i < (n - 1)):
+    while i < (n - 1):
 
         # Find Local Minima
         # Note that the limit is (n-2) as we are
@@ -47,7 +47,7 @@ def stockBuySell(price, n):
 
         # If we reached the end, break
         # as no further solution possible
-        if (i == n - 1):
+        if i == n - 1:
             break
 
         # Store the index of minima
@@ -79,7 +79,7 @@ stockBuySell(price, n)
 
 # This is code contributed by SHUBHAMSINGH10
 
-
+#i is no of transactions and j is day
 def maxProfit_k_times(prices, n, k):
     # Bottom-up DP approach
     profit = [[0 for i in range(k + 1)]

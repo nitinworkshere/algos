@@ -72,4 +72,23 @@ def is_palindrome(str, i, j):
     return True
 
 
+def longestPalindrome(self, s: str) -> str:
+    def expandM(s, l, r, length):
+        while (l >= 0) and (r < length) and (s[l] == s[r]):
+            l -= 1
+            r += 1
 
+        return r - l - 1, l + 1
+
+    length = len(s)
+    maxLen = 0
+    maxPalindromes = {0: ""}
+
+    for i in range(length):
+        len1, index1 = expandM(s, i, i, length)
+        len2, index2 = expandM(s, i, i + 1, length)
+        maxLen = max(maxLen, len1, len2)
+        if maxPalindromes.get(maxLen) is None:
+            maxPalindromes[maxLen] = s[index1:index1 + maxLen] if maxLen == len1 else s[index2:index2 + maxLen]
+
+    return maxPalindromes[maxLen]

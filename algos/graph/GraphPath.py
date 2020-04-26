@@ -12,7 +12,6 @@ def find_path_using_bfs(graph, source, dest):
             if not visited[i]:
                 queue.append(i)
                 visited[i] = True
-
     return False
 
 

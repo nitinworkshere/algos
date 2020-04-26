@@ -1,5 +1,6 @@
 from heapq import *
 
+#complexity O(nlogn)
 
 class MedianOfAStream:
     maxHeap = []  # containing first half of numbers

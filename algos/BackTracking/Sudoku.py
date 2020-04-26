@@ -6,7 +6,7 @@ def solve_sudoku(arr):
     l = [0, 0]
 
     # If there is no unassigned location, we are done
-    if (not find_empty_location(arr, l)):
+    if not find_empty_location(arr, l):
         return True
 
     # Assigning list values to row and col that we got from the above Function
@@ -23,7 +23,7 @@ def solve_sudoku(arr):
             arr[row][col] = num
 
             # return, if success, ya!
-            if (solve_sudoku(arr)):
+            if solve_sudoku(arr):
                 return True
 
             # failure, unmake & try again
